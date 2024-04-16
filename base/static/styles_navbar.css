@@ -1,0 +1,27 @@
+/* Navbar do logo */
+.navbar-logo {
+    height:max-content;
+    background-color: white;
+}
+
+.logo {
+    left: 50%;
+}
+
+.form-search {
+    display: flex;
+    flex-flow: nowrap;
+    max-width: max-content;
+}
+
+#search-input {
+    border-color: grey;
+    
+    width: 400px;
+}
+
+#search-submit {
+    background-color: white;
+    color: #808080;
+    
+}
