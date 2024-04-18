@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Register
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-5 register-form">
+      <h1 class="text-body-emphasis">Cadastro</h1>
+      <small class="form-text text-muted">*Campos obrigatórios</small>
+        <form action="{% url 'register' %}" method="POST" novalidate>
+          {% csrf_token %}
+          <div class="form-group mt-4">
+            {{ form }}
+            <small class="form-text text-muted">(DDD + número)</small>
+            <div class="text-left">
+              <button type="submit" class="btn btn-secondary mt-3 w-100 button-register">Cadastrar</button>
+            </div>
+          </div> 
+        </form> 
+      </div> 
+  </div>
+</div>
+ 
+
+{% endblock %}
