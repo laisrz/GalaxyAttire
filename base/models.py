@@ -5,7 +5,6 @@ from localflavor.br.models import BRStateField, BRCPFField, BRPostalCodeField
 
 
 class Customer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     cpf = BRCPFField(unique=True)
@@ -14,7 +13,7 @@ class Customer(models.Model):
     phone = models.CharField(max_length=200)
     address_street = models.CharField(max_length=300)
     address_number = models.CharField(max_length=50)
-    address_complemento = models.CharField(max_length=50)
+    address_complemento = models.CharField(max_length=50, blank=True)
     address_cep = BRPostalCodeField()
     address_city = models.CharField(max_length=200)
     address_state = BRStateField()
