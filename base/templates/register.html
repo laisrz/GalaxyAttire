@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Register
+{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <h1 class="text-body-emphasis">Cadastro</h1>
+    <br>
+    {% if success %}
+      <p class="alert alert-success"> Cadastro realizado com sucesso! </p>
+    {% else %}
+      <form action="{% url 'register' %}" method="POST" novalidate>
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+      </form>
+    {% endif %}
+        
+
+    
+
+  </div>
+</div>
+ 
+
+{% endblock %}
