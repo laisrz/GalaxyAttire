@@ -1,0 +1,8 @@
+.register-form {
+    border: solid 2px black;
+    padding: 1rem 3rem;
+}
+
+.button-register {
+    max-width: 400px;
+}
