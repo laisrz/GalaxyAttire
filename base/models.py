@@ -2,7 +2,7 @@ from django.db import models
 import uuid
 
 from localflavor.br.models import BRStateField, BRCPFField, BRPostalCodeField
-from multiselectfield import MultiSelectField
+
 
 
 class Customer(models.Model):
@@ -29,7 +29,7 @@ class Customer(models.Model):
         ordering = ['-date_created']
 
 def photo_path_upload_to(instance, filename):
-    return "images/{}/{}/{}".format(instance.product.category, instance.product.code, filename)
+    return "images/{}/{}/{}".format(instance.category, instance.code, filename)
 
 class Product(models.Model):
     categories = (
@@ -82,19 +82,6 @@ class Product(models.Model):
         ('Banho', 'Banho'),
         ('Pós-Banho', 'Pós-Banho')      
     )
-
-    colors = (
-        ('Branco', 'Branco'),
-        ('Preto', 'Preto'),
-        ('Azul', 'Azul'),
-        ('Rosa', 'Rosa'),
-        ('Vermelho', 'Vermelho'),
-        ('VE', 'Verde Escuro'),
-        ('AE', 'Azul Escuro'),
-        ('Cinza', 'Cinza'),
-        ('Laranja', 'Laranja'),
-        ('Bege', 'Bege')
-    )
   
     code = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=200)
@@ -107,7 +94,6 @@ class Product(models.Model):
     stock_size_GG = models.PositiveIntegerField()
     category = models.CharField(max_length=10, choices=categories)
     sub_category = models.CharField(max_length=50, choices=sub_categories)
-    color = MultiSelectField(max_length=10, choices=colors)
     description = models.TextField()
     details = models.TextField(blank=True)
     composition = models.CharField(max_length=200)
@@ -124,7 +110,7 @@ class Product(models.Model):
     photo_6 = models.ImageField(upload_to=photo_path_upload_to, blank=True)
     photo_6_alt = models.CharField(max_length=50, blank=True)
     sale = models.BooleanField(default=False)
-    percentage_discount = models.PositiveIntegerField(blank=True)
+    percentage_discount = models.PositiveIntegerField(blank=True, null=True)
     slug = models.SlugField(max_length=200, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
 
