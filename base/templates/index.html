@@ -51,20 +51,19 @@
 <div class="text-center m-3">
     <h3>NOVIDADES</h3>
     <div class="row my-4">
-        {% for product in arrivals %}
+        {% for product in arrivals|slice:":2" %}
         <div class="col-sm-6 col-md-3">
           <div class="card">
             <a href="#">
             <img class="card-img-top" src="{ url '/media/{{ product.photo_main }}'}" alt="{{ product.photo_main_alt }}">
             <div class="card-body">
-              <h5 class="card-title">Blusa feminina fios metalizados manga longa marrom | AK by Riachuelo</h5>
-              <p class="card-text"><b>R$ 149,90</b></p>
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="card-text"><b>R${{ product.price }}</b></p>
               </a>
             </div>
           </div>
         </div>
-     
-       
+        {% endfor %}
     </div>
 </div>
 

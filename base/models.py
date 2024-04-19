@@ -48,6 +48,7 @@ class Product(models.Model):
         ('Calça', 'Calça'),
         ('Blusa', 'Blusa'),
         ('Blazer', 'Blazer'),
+        ('Casaco', 'Casaco'),
         ('Shorts', 'Shorts'),
         ('Camisa', 'Camisa'),
         ('Camiseta', 'Camiseta'),
