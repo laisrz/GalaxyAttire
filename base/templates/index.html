@@ -4,6 +4,41 @@
 
 {% block content %}
 
+<!--Carrousel-->
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="d-block w-100 carrousel_image" src="/static/images/carrousel_third.png" alt="First slide">
+            <div class="carousel-caption d-none d-md-block carrousel_div_text">
+                <h2 class="carrousel_text">NOVA COLEÇÃO</h2>
+                <p class="carrousel_text">Outono-Inverno</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100 carrousel_image" src="/static/images/carrousel_second.jpg" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100 carrousel_image" src="/static/images/carrousel_first.png" alt="Third slide">
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </a>
+</div>
+<!--Frete grátis e outros-->
+<div class="text-center div_frete">
+    
+
+</div>
+
 
 
 {% endblock %}
