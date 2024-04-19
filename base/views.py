@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from base.forms import RegisterForm
-from base.models import Customer
+from base.models import Customer, Product
 
 def index(request):
-    return render(request, 'index.html')
+    arrivals = Product.objects.filter(arrival=True)
+    return render(request, 'index.html', {'arrivals': arrivals})
 
 def register(request):
     success = False 

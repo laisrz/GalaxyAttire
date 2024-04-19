@@ -98,6 +98,7 @@ class Product(models.Model):
     code = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=200)
     collection = models.CharField(max_length=200, blank=True)
+    arrival = models.BooleanField(default=False)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     stock_size_P = models.PositiveIntegerField()
     stock_size_M = models.PositiveIntegerField()

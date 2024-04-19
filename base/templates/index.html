@@ -34,11 +34,39 @@
     </a>
 </div>
 <!--Frete grátis e outros-->
-<div class="text-center div_frete">
-    
-
+<div class="text-center div_frete row py-2">
+    <ul class="mb-0">
+        <li class="d-inline mx-4"><b>FRETE GRÁTIS*</b> acima de R$279</li>
+        <li class="d-inline mx-4"><b>ATÉ 7X SEM JUROS*</b></li>
+        <li class="d-inline mx-4"><b>CUPONS DE DESCONTO </b><a href="#">Aproveite</a></li>
+        <li class="d-inline mx-4"><b>RETIRE EM LOJA </b>com frete grátis</li>
+    </ul>
+</div>
+<div class="text-center p-2">
+    <p>*Consulte condições em <a href="#">www.galaxyattire.com.br/regulamentos</a></p>
 </div>
 
+
+<!--Novidades-->
+<div class="text-center m-3">
+    <h3>NOVIDADES</h3>
+    <div class="row my-4">
+        {% for product in arrivals %}
+        <div class="col-sm-6 col-md-3">
+          <div class="card">
+            <a href="#">
+            <img class="card-img-top" src="{ url '/media'}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Blusa feminina fios metalizados manga longa marrom | AK by Riachuelo</h5>
+              <p class="card-text"><b>R$ 149,90</b></p>
+              </a>
+            </div>
+          </div>
+        </div>
+     
+       
+    </div>
+</div>
 
 
 {% endblock %}
