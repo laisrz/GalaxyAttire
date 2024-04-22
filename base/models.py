@@ -6,12 +6,26 @@ from localflavor.br.models import BRStateField, BRCPFField, BRPostalCodeField
 
 
 class Customer(models.Model):
+    customer_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     cpf = BRCPFField(unique=True)
     email = models.EmailField(max_length=200, unique=True)
     password = models.CharField(max_length=200)
     phone = models.CharField(max_length=200)
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name} {self.cpf}'
+    
+    class Meta:
+        verbose_name = 'Cadastro de cliente'
+        verbose_name_plural = 'Cadastro de clientes'
+        ordering = ['-date_created']
+
+class CustomerAddress(models.Model):
+    address_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     address_street = models.CharField(max_length=300)
     address_number = models.CharField(max_length=50)
     address_complemento = models.CharField(max_length=50, blank=True)
@@ -21,11 +35,11 @@ class Customer(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.first_name} {self.last_name} {self.cpf} {self.email}'
+        return f'{self.customer} {self.address_city} {self.date_created}'
     
     class Meta:
-        verbose_name = 'Cadastro de cliente'
-        verbose_name_plural = 'Cadastro de clientes'
+        verbose_name = 'Cadastro de endereço de cliente'
+        verbose_name_plural = 'Cadastro de endereços de clientes'
         ordering = ['-date_created']
 
 def photo_path_upload_to(instance, filename):
