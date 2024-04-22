@@ -4,6 +4,8 @@ import uuid
 from localflavor.br.models import BRStateField, BRCPFField, BRPostalCodeField
 
 
+def photo_path_upload_to(instance, filename):
+    return "images/{}/{}".format(instance.name, filename)
 
 class Customer(models.Model):
     customer_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -42,97 +44,52 @@ class CustomerAddress(models.Model):
         verbose_name_plural = 'Cadastro de endereços de clientes'
         ordering = ['-date_created']
 
-def photo_path_upload_to(instance, filename):
-    return "images/{}/{}/{}".format(instance.category, instance.code, filename)
+
+class Category(models.Model):
+    category_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=200, unique=True)
+
+    def __str__(self):
+        return f'{self.name}'
+
+class Collection(models.Model):
+    name = models.CharField(max_length=200, unique=True)
+    arrival = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.name}'
 
 class Product(models.Model):
-    categories = (
-        ('FE', 'Feminino'),
-        ('MA', 'Masculino'),
-        ('IN', 'Infantil'),
-        ('BE', 'Beleza'),
-        ('BA', 'Básicos'),
-        ('JE', 'Jeans'),
-        ('AC', 'Acessórios'),
-        ('ES', 'Esportivos'),
-        ('MO', 'Moda Íntima')
-    )
-
-    sub_categories = (
-        ('Calça', 'Calça'),
-        ('Blusa', 'Blusa'),
-        ('Blazer', 'Blazer'),
-        ('Casaco', 'Casaco'),
-        ('Shorts', 'Shorts'),
-        ('Camisa', 'Camisa'),
-        ('Camiseta', 'Camiseta'),
-        ('Moletom', 'Moletom'),
-        ('Saia', 'Saia'),
-        ('Vestido', 'Vestido'),
-        ('Top', 'Top'),
-        ('Legging', 'Legging'),
-        ('Calcinha', 'Calcinha'),
-        ('Cueca', 'Cueca'),
-        ('Pijama', 'Pijama'),
-        ('Meia', 'Meia'),
-        ('Sutiã', 'Sutiã'),
-        ('Bermuda', 'Bermuda'),
-        ('Terno', 'Terno'),
-        ('Anéis', 'Anéis'),
-        ('Bolsas', 'Bolsas'),
-        ('Bonés', 'Bonés'),
-        ('Brincos', 'Brincos'),
-        ('Cachecol', 'Cachecol'),
-        ('Carteiras', 'Carteiras'),
-        ('Cintos', 'Cintos'),
-        ('Colares', 'Colares'),
-        ('Óculos', 'Óculos'),
-        ('Relógios', 'Relógios'),
-        ('Lábios', 'Lábios'),
-        ('Olhos', 'Olhos'),
-        ('Rosto', 'Rosto'),
-        ('Unhas', 'Unhas'),
-        ('Perfume', 'Perfume'),
-        ('Banho', 'Banho'),
-        ('Pós-Banho', 'Pós-Banho')      
-    )
-  
     code = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=200)
-    collection = models.CharField(max_length=200, blank=True)
-    arrival = models.BooleanField(default=False)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    stock_size_P = models.PositiveIntegerField()
-    stock_size_M = models.PositiveIntegerField()
-    stock_size_G = models.PositiveIntegerField()
-    stock_size_GG = models.PositiveIntegerField()
-    category = models.CharField(max_length=10, choices=categories)
-    sub_category = models.CharField(max_length=50, choices=sub_categories)
+    collection = models.ForeignKey(Collection, on_delete=models.CASCADE, blank=True)
     description = models.TextField()
     details = models.TextField(blank=True)
     composition = models.CharField(max_length=200)
     photo_main = models.ImageField(upload_to=photo_path_upload_to)
     photo_main_alt = models.CharField(max_length=50, blank=True)
-    photo_2 = models.ImageField(upload_to=photo_path_upload_to, blank=True)
-    photo_2_alt = models.CharField(max_length=50, blank=True)
-    photo_3 = models.ImageField(upload_to=photo_path_upload_to, blank=True)
-    photo_3_alt = models.CharField(max_length=50, blank=True)
-    photo_4 = models.ImageField(upload_to=photo_path_upload_to, blank=True)
-    photo_4_alt = models.CharField(max_length=50, blank=True)
-    photo_5 = models.ImageField(upload_to=photo_path_upload_to, blank=True)
-    photo_5_alt = models.CharField(max_length=50, blank=True)
-    photo_6 = models.ImageField(upload_to=photo_path_upload_to, blank=True)
-    photo_6_alt = models.CharField(max_length=50, blank=True)
-    sale = models.BooleanField(default=False)
-    percentage_discount = models.PositiveIntegerField(blank=True, null=True)
-    slug = models.SlugField(max_length=200, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.name} {self.category} {self.sub_category} {self.price}'
+        return f'{self.name}'
     
     class Meta:
         verbose_name = 'Cadastro de produto'
         verbose_name_plural = 'Cadastro de produtos'
         ordering = ['-date_created']
     
+
+class ProductCategory(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+class ProductItem(models.Model):
+     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+     qtd_stock = models.PositiveIntegerField()
+     price = models.DecimalField(max_digits=6, decimal_places=2)
+
+
+    
+    
+    
+

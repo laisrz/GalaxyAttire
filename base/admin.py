@@ -1,5 +1,5 @@
 from django.contrib import admin
-from base.models import Customer, CustomerAddress, Product
+from base.models import *
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
@@ -15,6 +15,23 @@ class CustomerAddressAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['name', 'category', 'price']
-    search_fields = ['name', 'category', 'price', 'collection']
+    list_display = ['name', 'collection']
+    search_fields = ['name', 'collection']
     list_filter = ['date_created']
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name']
+
+@admin.register(ProductCategory)
+class ProductCategoryAdmin(admin.ModelAdmin):
+    list_display = ['product']
+
+@admin.register(Collection)
+class CollectionAdmin(admin.ModelAdmin):
+    list_display = ['name']
+
+@admin.register(ProductItem)
+class ProductItemAdmin(admin.ModelAdmin):
+    list_display = ['product_id', 'price']

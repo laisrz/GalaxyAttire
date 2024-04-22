@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from base.forms import RegisterForm
-from base.models import Customer, Product
-
+from base.models import *
 def index(request):
-    arrivals = Product.objects.filter(arrival=True)
-    return render(request, 'index.html', {'arrivals': arrivals})
+    collections = Collection.objects.filter(arrival=True)
+    collections_arrivals =  collections[0]
+    products_arrivals = Product.objects.filter(collection=collections_arrivals)
+    return render(request, 'index.html', {'arrivals': products_arrivals})
 
 def register(request):
     success = False 
