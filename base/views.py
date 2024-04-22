@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from base.forms import RegisterForm
 from base.models import *
+
+
 def index(request):
     collections = Collection.objects.filter(arrival=True)
     collections_arrivals =  collections[0]
@@ -26,3 +28,8 @@ def register(request):
         'success': success
     }
     return render(request, 'register.html', context)
+
+
+def view_product(request, id):
+    product = Product.objects.get(pk=id)
+    return render(request, 'product.html', {'product': product})

@@ -46,7 +46,6 @@ class CustomerAddress(models.Model):
 
 
 class Category(models.Model):
-    category_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=200, unique=True)
 
     def __str__(self):
@@ -59,9 +58,9 @@ class Collection(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+
 class Product(models.Model):
-    code = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE, blank=True)
     description = models.TextField()
     details = models.TextField(blank=True)
@@ -77,7 +76,8 @@ class Product(models.Model):
         verbose_name = 'Cadastro de produto'
         verbose_name_plural = 'Cadastro de produtos'
         ordering = ['-date_created']
-    
+
+
 
 class ProductCategory(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -87,6 +87,14 @@ class ProductItem(models.Model):
      product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
      qtd_stock = models.PositiveIntegerField()
      price = models.DecimalField(max_digits=6, decimal_places=2)
+
+
+
+
+
+    
+
+
 
 
     

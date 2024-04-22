@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  {{ product.name }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid m-2">
+    <!--Breadcrumb-->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">INÍCIO</a></li>
+        <li class="breadcrumb-item"><a href="#">CATEGORIA</a></li>
+        <li class="breadcrumb-item"><a href="#">SUB-CATEGORIA</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <!--Carrousel lateral de fotos-->
+        <div class="col-xs-12 col-md-2">
+            <img src="static/images/product.jpg">
+        </div>
+
+        <!--Main photo-->
+        <div class="col-xs-12 col-md-5">
+            <img src="/media/{{ product.photo_main }}" alt="">
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+
+{% endblock %}
