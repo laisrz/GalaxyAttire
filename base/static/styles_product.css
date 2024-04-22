@@ -1,0 +1,32 @@
+.product-photo {
+    height: 90%;
+}
+
+.product-color {
+    background-color: black;
+    border: solid 2px black;
+    width: 2rem;
+    height: 2rem;
+}
+
+.product-size {
+    border: solid 1px black;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.btn-buy {
+    width: 90%;
+    height: 3rem;
+    margin: 2rem 0.5rem;
+}
+
+#inlineFormInputCEP {
+    display: flex;
+    width:50%;
+    margin-right: 1rem;
+}
+
+.form-cep {
+    display: flex;
+}
