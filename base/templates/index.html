@@ -54,7 +54,7 @@
         {% for product in arrivals|slice:":2" %}
         <div class="col-sm-6 col-md-3">
           <div class="card">
-            <a href="#">
+            <a href="product/{{ product.id }}">
             <img class="card-img-top" src="/media/{{ product.photo_main }}" alt="{{ product.photo_main_alt }}">
             <div class="card-body">
               <h5 class="card-title">{{ product.name }}</h5>

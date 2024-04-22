@@ -30,3 +30,9 @@
 .form-cep {
     display: flex;
 }
+
+.btn-collapse {
+    font-size: 900;
+    align-self: end;
+    
+}

@@ -51,6 +51,12 @@ class Category(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+class SubCategory(models.Model):
+    name = models.CharField(max_length=200, unique=True)
+
+    def __str__(self):
+        return f'{self.name}'
+
 class Collection(models.Model):
     name = models.CharField(max_length=200, unique=True)
     arrival = models.BooleanField(default=False)
@@ -61,6 +67,8 @@ class Collection(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=200, unique=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None)
+    sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, default=None)
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE, blank=True)
     description = models.TextField()
     details = models.TextField(blank=True)
@@ -77,11 +85,6 @@ class Product(models.Model):
         verbose_name_plural = 'Cadastro de produtos'
         ordering = ['-date_created']
 
-
-
-class ProductCategory(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
 class ProductItem(models.Model):
      product_id = models.ForeignKey(Product, on_delete=models.CASCADE)

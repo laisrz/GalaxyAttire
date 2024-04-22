@@ -11,39 +11,37 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">INÍCIO</a></li>
-        <li class="breadcrumb-item"><a href="#">CATEGORIA</a></li>
-        <li class="breadcrumb-item"><a href="#">SUB-CATEGORIA</a></li>
+        <li class="breadcrumb-item"><a href="#">{{ product.category }}</a></li>
+        <li class="breadcrumb-item"><a href="#">{{ product.sub_category}}</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
         </ol>
     </nav>
 
     <div class="row">
         <!--Carrousel lateral de fotos-->
-        <div class="col-xs-12 col-md-2">
-            <img src="/static/images/product.jpg">
+        <div class="col-xs-12 col-lg-2">
+            <img src="#">
         </div>
 
         <!--Main photo-->
-        <div class="col-xs-12 col-md-6">
+        <div class="col-xs-12 col-lg-6">
             <img class="product-photo" src="/media/{{ product.photo_main }}" alt="{{ product.photo_main_alt }}">
         </div>
 
         <!--Info about product-->
-        <div class="col-xs-12 col-md-4">
-            <h3 class="my-4"><b>{{ product.name }}</b></h3>
+        <div class="col-xs-12 col-lg-4">
+            <h3 class="my-4 border-bottom pb-4"><b>{{ product.name }}</b></h3>
             <h4 class="my-5"><b>Price</b></h4>
             <h6 class="mt-4">Cor:</h6>
             <div class="rounded-circle product-color"></div>
-            <h6 class="mt-4">Tamanho</h6>
-            <div class="row px-1">
-                <div class="col-md-1 product-size m-2 px-2 py-2">P</div>
-                <div class="col-md-1 product-size m-2 px-2 py-2">M</div>
-                <div class="col-md-1 product-size m-2 px-2 py-2">G</div>
-                <div class="col-md-1 product-size m-2 px-2 py-2">GG</div>
-            </div>
+            <h6 class="my-4">Tamanho</h6>
+            <div class="d-inline product-size m-2 px-3 py-2">P</div>
+            <div class="d-inline product-size m-2 px-3 py-2">M</div>
+            <div class="d-inline product-size m-2 px-3 py-2">G</div>
+            <div class="d-inline product-size m-2 p-2">GG</div>
             <button type="button" class="btn btn-danger btn-buy">COMPRAR</button>
-            <div>
-                <h6>CALCULAR FRETE</h6>
+            <div class="border-top">
+                <h6 class="mt-4">CALCULAR FRETE</h6>
                 <form class="form-inline">
                     <div class="form-cep mt-4">
                         <input type="text" class="form-control mb-2 mr-2" id="inlineFormInputCEP" placeholder="Digite seu CEP">
@@ -53,16 +51,33 @@
                 <a href="#">Não sei meu CEP</a>
             </div>
         </div>
-       
-
-
-
-
-
-
-
-
     </div>
+    <div class="col-xs-12 mx-4 my-3 border-top">
+        <h5 class="mt-2 d-inline">Descrição</h5>
+        <button class="d-inline btn btn-light btn-collapse rounded-circle" type="button" data-toggle="collapse" data-target="#collapseDescription" aria-expanded="false" aria-controls="collapseExample">
+            +
+        </button>
+        <div class="collapse" id="collapseDescription">
+                <p>{{ product.description }}</p>
+        </div>
+    </div>
+    <div class="col-xs-12 mx-4 my-3 border-top">
+        <h5 class="d-inline mt-2">Detalhes</h5>
+        <button class="d-inline btn btn-light btn-collapse rounded-circle" type="button" data-toggle="collapse" data-target="#collapseDetails" aria-expanded="false" aria-controls="collapseExample">
+            +
+        </button>
+        <div class="collapse" id="collapseDetails">
+            <p>Coleção: {{ product.collection }}</p>
+            <p>{{ product.details }}</p>
+            <p>Composição: {{ product.composition }}</p>
+        </div>
+    </div>
+
+
+
+
+
+
 </div>
 
 {% endblock %}
